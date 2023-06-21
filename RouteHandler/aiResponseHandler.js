@@ -1,17 +1,5 @@
 const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const app = express();
-// const aiResponseHandler = require("./RouteHandler/aiResponseHandler");
-
-const port = process.env.PORT || 5000;
-require("dotenv").config();
-
-//default middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json());
-
+const router = express.Router();
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
@@ -20,7 +8,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-app.post("/ai/response", async (req, res) => {
+router.post("/ai/response", async (req, res) => {
   try {
     const { message } = req.body;
     console.log(message);
@@ -45,13 +33,4 @@ app.post("/ai/response", async (req, res) => {
   }
 })
 
-
-// app.use('/',aiResponseHandler);
-
-app.get("/", (req, res) => {
-  res.send("Refund for my disrupted flight");
-});
-
-app.listen(port, () => {
-  console.log(`port listen, ${port}`);
-});
+module.exports = router;

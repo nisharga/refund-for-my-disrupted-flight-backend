@@ -7,6 +7,7 @@ const app = express();
 
 const testRoute = require("./routes/testRoute.js");
 const aiGenerateRoute = require("./routes/aiGenerateRoute.js");
+const policyRoute = require("./src/policies-modules/policy-route");
 
 //default middleware
 app.use(cors());
@@ -19,6 +20,8 @@ connectToDatabase();
 //Routes
 app.use("/api/v1/", testRoute);
 app.use("/api/v1/aigenerate", aiGenerateRoute);
+
+app.use("/api/v1/", policyRoute);
 
 app.get("/", (req, res) => {
   res.send(`Refund for my disrupted flight, my port is ${port}`);

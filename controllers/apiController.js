@@ -20,9 +20,6 @@ const postResponse = async (req, res) => {
             prompt: `${message}`,
             temperature: 1,
             max_tokens: 256,
-            // top_p: 1,
-            // frequency_penalty: 0,
-            // presence_penalty: 0,
         });
         return res.status(200).json({
             success: true,

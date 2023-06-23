@@ -8,24 +8,30 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const policyService = async (payload, res) => {
+const policyService = async (payload) => {
   try {
-    const data = await Tracker.findOne({ AirlinesName: payload });
-    console.log(data);
-    //
-    // if (data) {
-    //   res.json({ AirlinesPolicies: data.AirlinesPolicies });
-    // } else {
-    //   const generatedAnswer = await generateAnswer(payload);
-    //   // Save the generated answer to MongoDB
-    //   const newData = new Tracker({
-    //     AirlinesName: payload,
-    //     AirlinesPolicies: generatedAnswer,
-    //   });
-    //   await newData.save();
-    //   return newData;
-    //   // res.json({ AirlinesPolicies: generatedAnswer });
-    // }
+    const data = await Tracker.findOne({
+      AirlinesName: payload
+    });
+    if (data ) {
+      const airData = {
+        AirlinesPolicies: data?.AirlinesPolicies
+      };
+      // console.log(airData);
+      return airData;
+    } else {
+      const generatedAnswer = await generateAnswer(payload);
+      // Save the generated answer to MongoDB
+      const newData = new Tracker({
+        AirlinesName: payload,
+        AirlinesPolicies: generatedAnswer,
+      });
+      await newData.save();
+      const airData = {
+        AirlinesPolicies: data?.AirlinesPolicies
+      };
+      return airData;
+    }
   } catch (error) {
     throw new Error(`Error to get policy ${error}`);
   }

@@ -6,6 +6,7 @@ const { connectToDatabase } = require("./server/connectToDatabase");
 const app = express();
 
 const testRoute = require("./routes/testRoute.js");
+const aiGenerateRoute = require("./routes/aiGenerateRoute.js");
 
 //default middleware
 app.use(cors());
@@ -17,11 +18,11 @@ connectToDatabase();
 
 //Routes
 app.use("/api/v1/", testRoute);
+app.use("/api/v1/aigenerate", aiGenerateRoute);
 
 app.get("/", (req, res) => {
   res.send(`Refund for my disrupted flight, my port is ${port}`);
 });
-
 
 app.listen(port, () => {
   console.log(`port listen, ${port}`);

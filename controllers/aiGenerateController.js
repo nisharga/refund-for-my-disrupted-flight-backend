@@ -4,21 +4,19 @@ const {
   policiesService,
 } = require("../services/aiGenerateServerce");
 
-const eligibilityCheckController = async (req, res, next) => {
-  const { message } = req.body;
-  const eligibility = await eligibilityCheckService(message);
+const eligibilityCheckController = async (req, res) => {
+  const eligibility = await eligibilityCheckService(req.body);
   res.status(200).json({
     status: "success",
-    data: eligibility.data.choices[0].text,
+    data: eligibility,
   });
 };
 
-const claimLetterController = async (req, res, next) => {
-  const { message } = req.body;
-  const claim = await claimLetterService(message);
+const claimLetterController = async (req, res) => {
+  const claim = await claimLetterService(req.body);
   res.status(200).json({
     status: "success",
-    data: claim.data.choices[0].text,
+    data: claim,
   });
 };
 

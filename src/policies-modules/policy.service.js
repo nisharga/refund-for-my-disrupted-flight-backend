@@ -10,14 +10,13 @@ const openai = new OpenAIApi(configuration);
 
 const policyService = async (payload) => {
   try {
-    const data = await Tracker.findOne({
-      AirlinesName: payload
+    let data = await Tracker.findOne({
+      AirlinesName: payload,
     });
-    if (data ) {
+    if (data) {
       const airData = {
-        AirlinesPolicies: data?.AirlinesPolicies
+        AirlinesPolicies: data.AirlinesPolicies,
       };
-      // console.log(airData);
       return airData;
     } else {
       const generatedAnswer = await generateAnswer(payload);
@@ -26,21 +25,29 @@ const policyService = async (payload) => {
         AirlinesName: payload,
         AirlinesPolicies: generatedAnswer,
       });
-      await newData.save();
+      data = await newData.save(); // Update 'data' with the saved document
       const airData = {
-        AirlinesPolicies: data?.AirlinesPolicies
+        AirlinesPolicies: data.AirlinesPolicies,
       };
       return airData;
     }
   } catch (error) {
-    throw new Error(`Error to get policy ${error}`);
+    throw new Error(`Error getting policy: ${error}`);
   }
 };
 
 async function generateAnswer(airlineName) {
+  const promt = `I work as an airline assistant, providing valuable support and assistance to airline passengers in need.
+  I am looking for ${airlineName} airline's official policies and regulations.
+  Please provide me with the official policies and regulations of ${airlineName} Airlines. This includes refund based but is not limited to information regarding baggage allowance, check-in procedures, ticketing policies, onboard services, flight disruptions, refunds, and any other relevant guidelines for passengers.
+  and put them in order number 1 to 10.
+ `;
+  // const promt2 = `I am looking Refund from My Disrupted Flight in ${airlineName} airline. But i couldn't know the rule. So provide me refund base rules of ${airlineName} airline. If you you think this is also necessary then add this flight delays, flight cancellations, denied boarding, Technical problems, Bad weather Conditions, Influence by other flights, problems at the airport,Covid 19 issues
+  // Put them in bullet points`;
+  //  finally if you you think this is also necessary then add this at the end with roman letter. flight delays, flight cancellations, denied boarding, Don't remember, Technical problems, Bad weather Conditions, Influence by other flights, problems at the airport, Strikes, No given reason, Covid 19 issues
   const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `${airlineName}`,
+    model: "text-davinci-002",
+    prompt: `${promt}`,
     temperature: 1,
     max_tokens: 400,
   });
@@ -50,14 +57,3 @@ async function generateAnswer(airlineName) {
 module.exports = {
   policyService,
 };
-
-// const generatedAnswer = await generateAnswer(payload);
-
-// const newTracker = new Tracker({
-//   // AirlinesName,
-//   AirlinesName: payload,
-//   AirlinesPolicies: generatedAnswer,
-// });
-// await newTracker.save();
-
-// return generatedAnswer;

@@ -49,7 +49,7 @@ async function generateAnswer(airlineName) {
     model: "text-davinci-002",
     prompt: `${promt}`,
     temperature: 1,
-    max_tokens: 400,
+    max_tokens: 800,
   });
   return response.data.choices[0].text;
 }

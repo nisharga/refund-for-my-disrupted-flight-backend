@@ -7,7 +7,15 @@ const app = express();
 
 const testRoute = require("./routes/testRoute.js");
 const aiGenerateRoute = require("./routes/aiGenerateRoute.js");
+
 const policyRoute = require("./src/policies-modules/policy-route");
+const userRoute = require("./src/user-modules/user.route");
+
+// const eligibilityRoute = require("./src/eligibility-modules/eligibily-route");
+
+const {
+  eligibilityCheckController,
+} = require("./controllers/aiGenerateController");
 
 //default middleware
 app.use(cors());
@@ -21,7 +29,10 @@ connectToDatabase();
 app.use("/api/v1/", testRoute);
 app.use("/api/v1/aigenerate", aiGenerateRoute);
 
-app.use("/api/v1/", policyRoute);
+//Main Routes
+// app.use("/api/v1/eligibility", eligibilityRoute);
+app.use("/api/v1/policy", policyRoute);
+app.use("/api/v1/users", userRoute);
 
 app.get("/", (req, res) => {
   res.send(`Refund for my disrupted flight, my port is ${port}`);

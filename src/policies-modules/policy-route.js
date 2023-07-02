@@ -3,6 +3,6 @@ const { policyController } = require("./policy.controller");
 
 const router = express.Router();
 
-router.post("/policy", policyController);
+router.post("/", policyController);
 
 module.exports = router;

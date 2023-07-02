@@ -12,7 +12,7 @@ const policyRoute = require("./src/policies-modules/policy-route");
 const userRoute = require("./src/user-modules/user.route");
 const queryRoute = require("./src/query-modules/query.route");
 
-// const eligibilityRoute = require("./src/eligibility-modules/eligibily-route");
+const eligibilityRoute = require("./src/eligibility-modules/eligibily.route");
 
 const {
   eligibilityCheckController,
@@ -28,10 +28,12 @@ connectToDatabase();
 
 //Routes
 app.use("/api/v1/", testRoute);
+
+// eligibility and claim letter
 app.use("/api/v1/aigenerate", aiGenerateRoute);
 
 //Main Routes
-// app.use("/api/v1/eligibility", eligibilityRoute);
+app.use("/api/v1/eligibility", eligibilityRoute);
 app.use("/api/v1/policy", policyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/query", queryRoute);

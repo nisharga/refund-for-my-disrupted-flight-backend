@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
-const claimReasonSchema = mongoose.Schema({
+const eligibleCheckerSchema = mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+  },
   airlineName: {
     type: String,
     required: true,
@@ -25,18 +29,21 @@ const claimReasonSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  emailSummary: {
+
+  emailCommunicationSummary: {
     type: String,
     required: true,
   },
-  messageSummary: {
+
+  messageExchangeSummary: {
     type: String,
     required: true,
   },
-  answer: {
-    type: String,
-    required: true,
-  },
+
+  // eligibility:{
+  //     type: String,
+  //     required: true
+  // }
 });
 
-module.exports = mongoose.model("ClaimReason", claimReasonSchema);
+module.exports = mongoose.model("EligibleChecker", eligibleCheckerSchema);

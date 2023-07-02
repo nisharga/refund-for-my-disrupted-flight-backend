@@ -35,7 +35,19 @@ async function updateUser(req, res) {
   }
 }
 
+async function getUserByEmailController(req, res) {
+  const { email } = req.params;
+  try {
+    const User = await userService.getUserByEmail(email);
+    res.status(200).json({ message: "User get successfully.", user: User });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+}
+
 module.exports = {
   createUser,
   updateUser,
+  getUserByEmailController,
 };

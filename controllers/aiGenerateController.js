@@ -20,17 +20,7 @@ const claimLetterController = async (req, res) => {
   });
 };
 
-const policiesController = async (req, res, next) => {
-  const { message } = req.body;
-  const policies = await policiesService(message);
-  res.status(200).json({
-    status: "success",
-    data: policies.data.choices[0].text,
-  });
-};
-
 module.exports = {
   eligibilityCheckController,
   claimLetterController,
-  policiesController,
 };

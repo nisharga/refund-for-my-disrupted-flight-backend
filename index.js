@@ -13,6 +13,7 @@ const userRoute = require("./src/user-modules/user.route");
 const queryRoute = require("./src/query-modules/query.route");
 
 const eligibilityRoute = require("./src/eligibility-modules/eligibily.route");
+const claimLetterRoute = require("./src/claimLetter-modules/claimLetter.route");
 
 const {
   eligibilityCheckController,
@@ -34,6 +35,7 @@ app.use("/api/v1/aigenerate", aiGenerateRoute);
 
 //Main Routes
 app.use("/api/v1/eligibility", eligibilityRoute);
+app.use("/api/v1/letter", claimLetterRoute);
 app.use("/api/v1/policy", policyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/query", queryRoute);

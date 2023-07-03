@@ -29,21 +29,22 @@ const eligibleCheckerSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-
   emailCommunicationSummary: {
     type: String,
     required: true,
   },
-
   messageExchangeSummary: {
     type: String,
     required: true,
   },
-
-  // eligibility:{
-  //     type: String,
-  //     required: true
-  // }
+  eligibility: {
+    type: Boolean,
+    required: true,
+  },
+  answer: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("EligibleChecker", eligibleCheckerSchema);
+module.exports = mongoose.model("EligibleCheck", eligibleCheckerSchema);

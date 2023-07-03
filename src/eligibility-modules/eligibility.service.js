@@ -1,4 +1,5 @@
 const { generateAnswer } = require("./elibility.checker");
+const EligibleCheck = require("./eligibility.model");
 
 const eligibilityService = async (payload) => {
   try {
@@ -13,8 +14,34 @@ const eligibilityService = async (payload) => {
       emailCommunicationSummary,
       messageExchangeSummary,
     } = payload;
-    const result = generateAnswer(payload);
-    return result;
+    // ai generate answer
+    const result = await generateAnswer(payload);
+    //get boolean value true/false base on eligibility
+    const eligibility = await result.includes("Eligibility: TRUE");
+
+    // Create a new instance of the EligibleChecker model
+    const eligibleChecker = new EligibleCheck({
+      email,
+      airlineName,
+      flightNumber,
+      dateOfDisruption,
+      reasonForDisruption,
+      boardingPassNumber,
+      boardingPassDate,
+      emailCommunicationSummary,
+      messageExchangeSummary,
+      eligibility,
+      answer: result,
+    });
+
+    // Save the data to MongoDB
+    const savedData = await eligibleChecker.save();
+
+    return {
+      status: "success",
+      data: savedData,
+      eligibility: eligibility,
+    };
   } catch (error) {
     throw new Error(`Error to get check eligibility
      ${error}`);

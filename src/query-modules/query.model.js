@@ -23,7 +23,7 @@ const querySchema = new mongoose.Schema({
   },
   suggestions: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

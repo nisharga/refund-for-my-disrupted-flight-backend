@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
-const eligibleCheckerSchema = mongoose.Schema({
-  eligibility: {
-    type: Boolean,
-    required: true,
-  },
-  answer: {
+const claimLetterSchema = mongoose.Schema({
+  claimLetter: {
     type: String,
     required: true,
   },
   email: {
+    type: String,
+    required: true,
+  },
+  fullName: {
     type: String,
     required: true,
   },
@@ -37,6 +37,22 @@ const eligibleCheckerSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  receipts: [
+    {
+      meal: {
+        type: Number,
+      },
+      accommodation: {
+        type: Number,
+      },
+      transportation: {
+        type: Number,
+      },
+      other: {
+        type: Number,
+      },
+    },
+  ],
   emailCommunicationSummary: {
     type: String,
     required: true,
@@ -47,4 +63,4 @@ const eligibleCheckerSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("EligibleCheck", eligibleCheckerSchema);
+module.exports = mongoose.model("ClaimLetter", claimLetterSchema);

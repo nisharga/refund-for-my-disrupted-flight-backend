@@ -5,7 +5,6 @@ const eligibilityController = async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    eligibility: eligibility.eligibility,
     data: eligibility,
   });
 };

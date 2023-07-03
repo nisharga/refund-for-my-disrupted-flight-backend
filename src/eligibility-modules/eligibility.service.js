@@ -36,12 +36,7 @@ const eligibilityService = async (payload) => {
 
     // Save the data to MongoDB
     const savedData = await eligibleChecker.save();
-
-    return {
-      status: "success",
-      data: savedData,
-      eligibility: eligibility,
-    };
+    return savedData;
   } catch (error) {
     throw new Error(`Error to get check eligibility
      ${error}`);

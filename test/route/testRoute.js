@@ -1,5 +1,5 @@
 const express = require("express");
-const { getResponse, postResponse } = require("../controllers/apiController");
+const { getResponse, postResponse } = require("../controller/apiController");
 const router = express.Router();
 
 router.route("/test").get((req, res) => {

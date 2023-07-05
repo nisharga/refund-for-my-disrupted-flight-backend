@@ -2,7 +2,7 @@
   "name": "refund-for-my-disrupted-flight-backend",
   "version": "1.0.0",
   "description": "A powerful backend server application developed by machine mind team to handle flight refund requests for disrupted flights.",
-  "main": "index.js",
+  "main": "./server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
@@ -27,6 +27,7 @@
     "express-async-handler": "^1.2.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "openai": "^3.3.0"
   }
 }

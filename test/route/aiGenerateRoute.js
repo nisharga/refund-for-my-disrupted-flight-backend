@@ -2,7 +2,7 @@ const express = require("express");
 const {
   eligibilityCheckController,
   claimLetterController,
-} = require("../controllers/aiGenerateController");
+} = require("../controller/aiGenerateController");
 const router = express.Router();
 
 router.post("/eligibility", eligibilityCheckController);

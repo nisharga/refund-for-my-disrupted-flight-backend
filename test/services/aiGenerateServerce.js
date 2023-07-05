@@ -1,5 +1,5 @@
 const { OpenAIApi, Configuration } = require("openai");
-const { openAiApiKey } = require("../config");
+const { openAiApiKey } = require("../../config");
 const EligibleChecker = require("../model/eligibleCheckerSchema");
 const ClaimReason = require("../model/claimReasonSchema");
 

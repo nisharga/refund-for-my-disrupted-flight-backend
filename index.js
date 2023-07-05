@@ -5,8 +5,8 @@ const { port } = require("./config");
 const { connectToDatabase } = require("./server/connectToDatabase");
 const app = express();
 
-const testRoute = require("./routes/testRoute.js");
-const aiGenerateRoute = require("./routes/aiGenerateRoute.js");
+const testRoute = require("./test/route/testRoute.js");
+const aiGenerateRoute = require("./test/route/aiGenerateRoute.js");
 
 const policyRoute = require("./src/policies-modules/policy-route");
 const userRoute = require("./src/user-modules/user.route");
@@ -17,7 +17,7 @@ const claimLetterRoute = require("./src/claimLetter-modules/claimLetter.route");
 
 const {
   eligibilityCheckController,
-} = require("./controllers/aiGenerateController");
+} = require("./test/controller/aiGenerateController");
 
 //default middleware
 app.use(cors());
@@ -27,18 +27,13 @@ app.use(express.json());
 //mongoDB connect with mongoose
 connectToDatabase();
 
-//Routes
-app.use("/api/v1/", testRoute);
-
-// eligibility and claim letter
-app.use("/api/v1/aigenerate", aiGenerateRoute);
-
 //Main Routes
 app.use("/api/v1/eligibility", eligibilityRoute);
 app.use("/api/v1/letter", claimLetterRoute);
 app.use("/api/v1/policy", policyRoute);
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/query", queryRoute);
+//Main Routes
 
 app.get("/", (req, res) => {
   res.send(`Refund for my disrupted flight, my port is ${port}`);
@@ -47,5 +42,10 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`port listen, ${port}`);
 });
+
+//Routes For Testing
+app.use("/api/v1/", testRoute);
+app.use("/api/v1/aigenerate", aiGenerateRoute);
+//Routes For Testing
 
 module.exports = app;

@@ -7,6 +7,7 @@ const policyController = async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
+    name: airlineName,
     data: policies,
   });
 };

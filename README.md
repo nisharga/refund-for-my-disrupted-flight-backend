@@ -43,10 +43,6 @@ Hosted on cyclic.ch
 
 ![App Screenshot](https://i.ibb.co/ZggPDyC/2.png)
 
-#### Model.js + other
-
-![App Screenshot](https://i.ibb.co/B2m7kyN/3.png)
-
 # 🏆 API Reference / Functionalities
 
 ## Eligibility Check

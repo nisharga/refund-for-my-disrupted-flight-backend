@@ -6,7 +6,7 @@ Hosted on cyclic.ch
 
 # 🔥 Technology stack
 
-### We use MERN (MongoDB, Express.js, React.js, Node.js) as our development stack for building full-stack web applications.
+### The technology stack used for the product includes Express.js (v4.18.2) as the backend framework, MongoDB (v5.6.0) as the database, and OpenAI (v3.3.0) for additional functionalities. Other dependencies such as body-parser, cors, dotenv, express-async-handler, mongoose, and nodemon were also utilized for enhanced development and testing capabilities.
 
 #### Packages we use in this project
 
@@ -71,7 +71,7 @@ emailCommunicationSummary,
 messageExchangeSummary,
 ```
 
-#### Get All Eligibility Data
+#### Get all eligibility data of a user
 
 ```http
   GET /api/v1/eligibility/${email}
@@ -81,7 +81,7 @@ messageExchangeSummary,
 | :-------- | :------- | :--------------------------------------------------- |
 | `email`   | `string` | **Required**. this users email, all eligibility show |
 
-#### Get A Single Eligibility data
+#### Get A Single Eligibility data of a user
 
 ```http
   GET /api/v1/eligibility/single/${id}
@@ -123,7 +123,7 @@ emailCommunicationSummary,
 messageExchangeSummary,
 ```
 
-#### Get All Claim Letter
+#### Get all claim Letter of a user
 
 ```http
   GET /api/v1/letter/${email}

@@ -26,7 +26,7 @@ Hosted on cyclic.ch
 
 ### The purpose of the project backend is to handle the logic and functionality of the minimum viable product, allowing it to function smoothly and effectively.
 
-# 📷 Screenshots
+# 📷 Functionalities
 
 #### We Follow Moduler Pattern in our backend
 
@@ -43,7 +43,7 @@ Hosted on cyclic.ch
 
 ![App Screenshot](https://i.ibb.co/ZggPDyC/2.png)
 
-# 🏆 API Reference / Functionalities
+# 🏆 API Reference
 
 ## Eligibility Check
 
